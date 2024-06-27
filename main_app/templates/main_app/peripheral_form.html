@@ -6,10 +6,10 @@
 {% block content %}
 
 <div class="page-header">
-    {% if computer %}
-    <h1>Edit {{ computer.name }}</h1>
+    {% if peripheral %}
+    <h1>Edit your peripherals</h1>
     {% else %}
-    <h1>Add a Computer</h1>
+    <h1>Add peripherals</h1>
     {% endif %}
   <img src="{% static 'images/nerd-cat.svg' %}" alt="A cat using a computer" />
 </div>
@@ -19,11 +19,13 @@
   <table>
     {{ form.as_table }}
   </table>
-  {% if computer %}
-    <button type="submit" class="btn submit">Update!</button>
-  {% else %}
-    <button type="submit" class="btn submit">Submit!</button>
-  {% endif %}
+  <button type="submit" class="btn submit">
+    {% if peripheral %}
+    Update!
+    {% else %}
+    Add new peripherals!
+    {% endif %}
+  </button>
 </form>
 
 {% endblock %}

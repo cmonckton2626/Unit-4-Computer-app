@@ -24,6 +24,16 @@
     margin-top: 20px;
   }
   
+  .computer-peripherals-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+  }
+
+  /* .btn {
+    margin: 15px;
+  } */
+  
   .feedings-toy-container {
     display: flex;
     flex-direction: column;

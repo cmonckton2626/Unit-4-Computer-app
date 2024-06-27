@@ -5,21 +5,60 @@
 {% endblock %} 
 {% block content %}
 <section class="cat-container">
-  <div class="cat-img">
-    <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy cat" />
-  </div>
-  <div class="cat-details">
-    <h1>{{ computer.name }}</h1>
-    <h3>
-        Computer type: {{ computer.comptype }}</br>
-        CPU: {{ computer.cpu }}</br>
-        GPU: {{ computer.gpu }}</br>
-        RAM: {{ computer.ram }}</br>
-    </h3>
-    <div class="cat-actions">
-      <a href="{% url 'computer-update' computer.id %}" class="btn warn">Edit</a>
-      <a href="{% url 'computer-delete' computer.id %}" class="btn danger">Delete</a>
+  <div class="computer-parts">
+    <div class="cat-img">
+      <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy cat" />
     </div>
+    <div class="cat-details">
+      <h1>{{ computer.name }}</h1>
+      <h3>
+          Computer type: {{ computer.get_comptype_display }}</br>
+          CPU: {{ computer.cpu }}</br>
+          GPU: {{ computer.gpu }}</br>
+          RAM: {{ computer.ram }}</br>
+      </h3>
+      <div class="cat-actions">
+        <a href="{% url 'computer-update' computer.id %}" class="btn warn">Edit</a>
+        <a href="{% url 'computer-delete' computer.id %}" class="btn danger">Delete</a>
+      </div>
+    </div>
+  </div>
+  <div class="computer-peripherals">
+    <h1>Peripherals</h1>
+      {% for peripheral in peripherals %}
+        <ul>  
+          {% if peripheral.keyboard %}
+            <li><h3>Keyboard: {{ peripheral.keyboard }}</h3></li>
+          {% endif %}
+          {% if peripheral.mouse %}
+            <li><h3>Mouse: {{ peripheral.mouse }}</h3></li>
+          {% endif %}
+          {% if peripheral.monitor1 %}
+            <li><h3>First Monitor: {{ peripheral.monitor1 }}</h3></li>
+          {% endif %}
+          {% if peripheral.monitor2 %}
+            <li><h3>Second Monitor: {{ peripheral.monitor2 }}</h3></li>
+          {% endif %}
+          {% if peripheral.monitor3 %}
+            <li><h3>Third Monitor: {{ peripheral.monitor3 }}</h3></li>
+          {% endif %}
+        </ul>
+      {% empty %}
+        <h1>No peripherals found.</h1>
+      {% endfor %}
+    {% if user.id == computer.owner.id %}
+      {% if peripherals.exists %}
+        <div class="computer-peripherals-btn">
+          <a href="{% url 'computer-peripherals-update' computer.id %}" class="btn submit">Edit Peripherals</a>
+          <a href="{% url 'computer-peripherals-delete' computer.id %}" class="btn danger">Delete</a>
+
+        </div>
+      {% else %}
+      <div class="computer-peripherals-btn">
+        <a href="{% url 'computer-peripherals' computer.id %}" class="btn submit">Add Peripherals</a>
+      </div>
+      {% endif %}
+    {% endif %}
   </div>
 </section>
 <section class="computer-comments">

@@ -10,23 +10,27 @@
 </section>
 
 <section class="card-container">
-  {% for computer in computers %}
-    <div class="card">
-      <a href="{% url 'computer-detail' computer.id %}">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img
-            src="{% static 'images/nerd-cat.svg' %}"
-            alt="placeholder"
-          />
+  {% if computers %}
+    {% for computer in computers %}
+      <div class="card">
+        <a href="{% url 'computer-detail' computer.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src="{% static 'images/nerd-cat.svg' %}"
+              alt="placeholder"
+            />
+          </div>
+          <h2 class="card-title">{{ computer }}</h2>
+          <h3>
+            Computer CPU: {{ computer.cpu }}</br>
+            Computer GPU: {{ computer.gpu }}</br>
+          </h3>
         </div>
-        <h2 class="card-title">{{ computer }}</h2>
-        <p>
-          Computer CPU: {{ computer.cpu }}</br>
-          Computer GPU: {{ computer.gpu }}</br>
-        </p>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  {% else %}
+      <h1>Please add the first computer!</h1>
+  {% endif %}
 </section>
 {% endblock %}

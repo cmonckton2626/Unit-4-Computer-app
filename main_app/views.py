@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.views.generic import CreateView, UpdateView, DeleteView
-from .models import Computer, Comment
+from .models import Computer, Comment, Peripheral
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -12,25 +12,36 @@ def home(request):
 
 # this is cat_index route
 def community(request):
-    computers = Computer.objects.all()
+    computers = Computer.objects.all().order_by('id')
     return render(request, 'computers/community.html', {"computers": computers})
 
 def computer_detail(request, computer_id):
     computer = get_object_or_404(Computer, id=computer_id)
     comments = Comment.objects.filter(computer=computer)
-    return render(request, 'computers/detail.html', {'computer': computer, 'comments': comments})
+    peripherals = Peripheral.objects.filter(computer=computer)
+
+    context = {
+        'computer': computer,
+        'comments': comments,
+        'peripherals': peripherals,
+    }
+    return render(request, 'computers/detail.html', context)
 
 class ComputerCreate(LoginRequiredMixin, CreateView):
     model = Computer
-    fields = "__all__"
+    fields = ['name', 'comptype', 'cpu', 'gpu', 'ram']
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
 
 class ComputerUpdate(LoginRequiredMixin, UpdateView):
     model = Computer
-    fields = '__all__'
+    fields = ['name', 'comptype', 'cpu', 'gpu', 'ram']
 
 class ComputerDelete(LoginRequiredMixin, DeleteView):
     model = Computer
-    success_url = '/community/'
+    success_url = 'community/'
 
 class CommentCreate(LoginRequiredMixin, CreateView):
     model = Comment
@@ -72,9 +83,49 @@ class CommentDelete(LoginRequiredMixin, DeleteView):
         computer_id = self.kwargs['computer_id']
         return reverse_lazy('computer-detail', kwargs={'computer_id': computer_id})
 
+class PeripheralsCreate(LoginRequiredMixin, CreateView):
+    model = Peripheral
+    fields = ['keyboard', 'mouse', 'monitor1', 'monitor2', 'monitor3']
 
+    def form_valid(self, form):
+        computer_id = self.kwargs['computer_id']
+        computer = get_object_or_404(Computer, id=computer_id)
+        form.instance.computer = computer
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        computer_id = self.kwargs['computer_id']
+        return reverse_lazy('computer-detail', kwargs={'computer_id': computer_id})
 
+class PeripheralsUpdate(LoginRequiredMixin, UpdateView):
+    model = Peripheral
+    fields = ['keyboard', 'mouse', 'monitor1', 'monitor2', 'monitor3']
 
+    def get_object(self, queryset=None):
+        computer_id = self.kwargs.get('pk')
+        peripheral = get_object_or_404(Peripheral, computer__id=computer_id)
+        return peripheral
+    
+    def get_success_url(self):
+        computer_id = self.kwargs.get('pk')
+        return reverse_lazy('computer-detail', kwargs={'computer_id': computer_id})
 
+class PeripheralsDelete(LoginRequiredMixin, DeleteView):
+    model = Peripheral
 
+    def get_success_url(self):
+        computer_id = self.kwargs.get('pk')
+        return reverse_lazy('computer-detail', kwargs={'computer_id': computer_id})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        computer_id = self.kwargs.get('pk')
+        computer = get_object_or_404(Computer, id=computer_id)
+        context['computer'] = computer
+        return context
+
+    def get_object(self, queryset=None):
+        computer_id = self.kwargs.get('pk')
+        peripheral = get_object_or_404(Peripheral, computer__id=computer_id)
+        return peripheral
+        

@@ -17,6 +17,7 @@ class Computer(models.Model):
     cpu = models.CharField(max_length=100, verbose_name="CPU", blank=True)
     gpu = models.CharField(max_length=100, verbose_name="GPU", blank=True)
     ram = models.CharField(max_length=100, verbose_name="RAM", blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='computer')
     # pic = # i dont know how to do this yet
 
     def __str__(self):
@@ -36,3 +37,24 @@ class Comment(models.Model):
     
     class Meta:
         ordering = ['-timestamp']
+
+class Peripheral(models.Model):
+    keyboard = models.CharField(max_length=100, verbose_name="Keyboard", blank=True)
+    mouse = models.CharField(max_length=100, verbose_name="Mouse", blank=True)
+    monitor1 = models.CharField(max_length=100, verbose_name="Monitor 1")
+    monitor2 = models.CharField(max_length=100, verbose_name="Monitor 2", blank=True)
+    monitor3 = models.CharField(max_length=100, verbose_name="Monitor 3", blank=True)
+    computer = models.OneToOneField(Computer, on_delete=models.CASCADE, related_name='peripherals')
+    # pic = # i dont know how to do this yet
+
+    def __str__(self):
+        return f"Peripherals for {self.computer.owner.username}'s computer"
+
+    def get_absolute_url(self):
+        return reverse('computer-peripherals', kwargs={'computer_id': self.computer.id})
+    
+
+
+
+
+

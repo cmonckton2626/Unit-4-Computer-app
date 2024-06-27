@@ -3,18 +3,30 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    border-radius: 10px;
   }
   
   .card {
-    width: 275px;
+    width: auto;
+
     margin: 10px;
     border: var(--borders);
     box-shadow: var(--card-box-shadow);
+    border-radius: 10px;
+    height: auto;
+    background: var(--nav-bg-ff);
+    transition: all .2s ease;
+
+    &:hover {
+      box-shadow: 9px 9px 10px -1px var(--link-hover-color);
+      background: var(--nav-bg-hover);
+    }
   }
   
   .card-content {
-    padding: 10px;
-    width: 100%;
+    padding: 20px;
+    width: 275px;
+    height: 265px;
   }
   
   .usr-img {
@@ -30,6 +42,10 @@
   .card h2 {
     margin: 10px 0;
     font-size: var(--font-xl);
+  }
+
+  .card h3 {
+    font-size: var(--font-l);
   }
   
   .card p {

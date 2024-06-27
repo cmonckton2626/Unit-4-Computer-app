@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import dj_database_url
 """Django's command-line utility for administrative tasks."""
 import os
 import sys

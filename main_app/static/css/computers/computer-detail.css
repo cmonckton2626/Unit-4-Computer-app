@@ -63,7 +63,9 @@
   .comment-author {
     display: flex;
     align-items: center;
-    width: 100px;
+    justify-content: flex-end;
+    width: 200px;
+    padding-right: 10px;
   }
 
   .comment-text {

@@ -45,7 +45,7 @@ class ComputerUpdate(LoginRequiredMixin, UpdateView):
 
 class ComputerDelete(LoginRequiredMixin, DeleteView):
     model = Computer
-    success_url = 'community/'
+    success_url = reverse_lazy('community')
 
 class CommentCreate(LoginRequiredMixin, CreateView):
     model = Comment

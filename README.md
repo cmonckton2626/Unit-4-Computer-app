@@ -30,7 +30,7 @@ You can either look around or sign up to get started interacting!
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
 ![Trello](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
-##  Attirbutions
+##  Attributions
 Fonts: https://fonts.google.com/
 <br>
 Logo art: https://www.canva.com/

@@ -20,7 +20,7 @@ You can either look around or sign up to get started interacting!
 ##  Planning 
 ![ERD](main_app/static/images/erd.png)
 ![Wire frame community page](main_app/static/images/communityWF.png)
-![Wire frame computer detail page](computerdetailWF.png)
+![Wire frame computer detail page](main_app/static//images/computerdetailWF.png)
 ##  Technologies used
 ![PSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)

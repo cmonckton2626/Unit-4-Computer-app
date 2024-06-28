@@ -4,21 +4,21 @@
 <link rel="stylesheet" href="{% static 'css/computers/computer-detail.css' %}" />
 {% endblock %} 
 {% block content %}
-<section class="cat-container">
+<section class="computer-container">
   <div class="computer-parts">
-    <div class="cat-img">
+    <div class="computer-img">
       <img src="{% static 'images/sk8r-boi-cat.svg' %}" alt="A skater boy cat" />
     </div>
-    <div class="cat-details">
+    <div class="computer-details">
       <h1>{{ computer.name }}</h1>
-      <h3>
-          Computer type: {{ computer.get_comptype_display }}</br>
-          CPU: {{ computer.cpu }}</br>
-          GPU: {{ computer.gpu }}</br>
-          RAM: {{ computer.ram }}</br>
-      </h3>
+      <ul>
+            <li><h3>Computer type: {{ computer.get_comptype_display }}</h3></li>
+            <li><h3>CPU: {{ computer.cpu }}</h3></li>
+            <li><h3>GPU: {{ computer.gpu }}</h3></li>
+            <li><h3>RAM: {{ computer.ram }}</h3></li>
+      </ul>
       {% if user.id == computer.owner.id %}
-        <div class="cat-actions">
+        <div class="computer-actions">
           <a href="{% url 'computer-update' computer.id %}" class="btn warn">Edit</a>
           <a href="{% url 'computer-delete' computer.id %}" class="btn danger">Delete</a>
         </div>
@@ -63,30 +63,27 @@
   </div>
 </section>
 <section class="computer-comments">
-  <a href="{% url 'comment-create' computer.id %}"><h1>Add a Comment!</h1></a>
+  <a href="{% url 'comment-create' computer.id %}" class="btn submit">Add a Comment!</a>
   {% for comment in comments %}
     <div class="comment-container">
       <div class="comment-author">
-        <h3>Author: {{ comment.author }}</h3>
-      </div>
-      <div class="comment-time">
-        <h6>Posted on: {{ comment.timestamp }}</h6>
+        <h3>{{ comment.author }}:</h3>
       </div>
       <div class="comment-text">
-        <h4>{{ comment.text }}</h4>
+        <h2>{{ comment.text }}</h2>
       </div>
       {% if user.id == comment.author.id %}
         <div class="comment-actions">
-          <a href="{% url 'comment-update' computer_id=computer.id comment_id=comment.id %}" class="btn">Update</a>
+          <a href="{% url 'comment-update' computer_id=computer.id comment_id=comment.id %}" class="btn">Edit</a>
           <form action="{% url 'comment-delete' computer.id comment.id %}" method="post">
             {% csrf_token %}
-            <button type="submit" class="btn danger">Delete Comment</button>
+            <button type="submit" class="btn danger">Delete</button>
           </form>
         </div>
       {% endif %}
     </div>
   {% empty %}
-    <p>No comments yet.</p>
+    <h3>No comments yet.</h3>
   {% endfor %}    
 </section>
 

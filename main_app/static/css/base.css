@@ -177,6 +177,20 @@ html {
   .page-content {
     font-size: var(--font-reg);
   }
+
+  .homepage h1 {
+    display: flex;
+    justify-content: center;
+    font-size: var(--font-xtreme);
+    padding: 10px;
+  }
+
+  .homepage h3 {
+    display: flex;
+    justify-content: center;
+    font-size: var(--font-xl);
+    padding: 50px;
+  }
   
   @media only screen and (min-width: 768px) {
     header {

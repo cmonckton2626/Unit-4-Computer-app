@@ -1,12 +1,12 @@
-.cat-container {
-    padding: 35px 30px;
+.computer-container {
+    padding: 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   
-  .cat-img {
+  .computer-img {
     width: 75%;
     max-width: 350px;
   }
@@ -16,11 +16,11 @@
     border-radius: var(--card-border-radius);
   }
   
-  .cat-details {
-    width: 98%;
+  .computer-parts {
+    width: 45%;
   }
   
-  .cat-actions {
+  .computer-actions {
     margin-top: 20px;
   }
   
@@ -30,201 +30,95 @@
     margin: 10px;
   }
 
-  /* .btn {
-    margin: 15px;
-  } */
-  
-  .feedings-toy-container {
+  .computer-comments {
+    padding: 15px 25px;
+  }
+
+  .comment-container {
+    height: 70px;
     display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-    align-items: center;
+
   }
   
-  .subsection-title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-  
-  .subsection-content {
-    margin: 0 8px;
-  }
-  
-  .toy-container {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  
-  .color-block {
-    opacity: 0.8;
-    height: 25px;
-    width: 25px;
-    margin-right: 10px;
-  }
-  
-  .unfed,
-  .fed,
-  .no-toys,
-  .all-toys {
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .unfed,
-  .no-toys {
-    color: var(--danger);
-  }
-  
-  .fed,
-  .all-toys {
-    color: var(--submit);
-  }
-  
-  .cat-details h1 {
+  h1 {
     font-size: var(--font-xxl);
     margin: 15px 0 3px;
   }
   
-  .cat-details h2 {
+  h2 {
     font-size: var(--font-xl);
-    margin: 0 0 10px;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  .cat-details h3 {
-    margin: 20px 0 10px;
-    font-size: var(--font-l);
-  }
-  
-  .cat-details p {
-    font-size: var(--font-reg);
     margin: 5px 0;
   }
   
-  .feedings-toy-container > section {
-    width: 80%;
-    min-width: 360px;
-    border: var(--borders);
-    border-radius: var(--card-border-radius);
-    padding: 10px;
-    box-shadow: var(--card-box-shadow);
+  h3 {
+    margin: 5px 0;
+    font-size: var(--font-l);
+  }
+  
+  p {
+    font-size: var(--font-reg);
+    margin: 5px 0;
+  }
+
+  .comment-author {
+    display: flex;
+    align-items: center;
+    width: 100px;
+  }
+
+  .comment-text {
+    display: flex;
+    align-items: center;
+  }
+
+  .comment-author h3 {
+    font-size: var(--font-xl);
+  }
+
+  .comment-time {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+  }
+
+  .comment-time h6 {
+    margin: 5px 0;
+    padding: 0;
+    line-height: 1rem;
+    font-size: 1.3rem;
+  }
+
+  .comment-actions {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-bottom: 20px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
   }
-  
-  .subsection-title img {
-    height: 42px;
-    margin-left: 8px;
+
+  .comment-actions a {
+    font-size: 1.3rem;
+    padding: 2px;
   }
-  
-  .subsection-title img:first-of-type {
-    margin-left: 16px;
-  }
-  
-  .feedings h2,
-  .toys h2 {
-    font-size: 3.2rem;
-    margin: 0;
-  }
-  
-  .feedings h3,
-  .toys h3 {
-    font-size: var(--font-xl);
-    margin: 10px 0;
-  }
-  
-  .subsection-content p,
-  .subsection-content input,
-  .subsection-content select {
-    font-size: var(--font-l);
-  }
-  
-  .subsection-content input,
-  .subsection-content select {
-    margin-left: 5px;
-    padding: 3px;
-  }
-  
-  .feedings table {
-    width: calc(100% - 16px);
-    text-align: left;
-    border-collapse: collapse;
-    margin: 0 8px;
-  }
-  
-  .feedings td {
-    padding: 8px 5px;
-    font-size: var(--font-reg);
-  }
-  
-  .feedings th {
-    font-size: var(--font-l);
-    padding: 5px 5px 0;
-    border-bottom: rgb(36, 116, 248) solid 2px;
-  }
-  
-  .feedings tr:nth-child(even) {
-    background-color: #f3f3fd;
-  }
-  
-  .toy-container p {
-    margin: 12px 0;
-  }
-  
-  .toy-container a {
-    text-decoration: none;
-    color: #111;
-  }
-  
-  .toy-container .btn {
-    padding: 3px 10px;
-    margin-left: 10px;
-  }
-  
-  #file-input {
-    overflow: hidden;
-    position: absolute;
-    width: 0.1px;
-    height: 0.1px;
-  }
-  
-  #file-name {
-    margin-bottom: 10px;
+
+  .comment-actions button {
+    font-size: 1.3rem;
+    padding: 2px;
   }
   
   @media only screen and (min-width: 768px) {
-    .cat-container {
+    .computer-container {
       padding: 35px 30px;
       flex-direction: row;
       align-items: center;
       justify-content: start;
     }
   
-    .cat-img {
+    .computer-img {
       width: 25%;
       max-width: 250px;
       margin-right: 25px;
     }
-  
-    .feedings-toy-container {
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: flex-start;
-    }
-  
-    .feedings-toy-container > section {
-      width: 45%;
-    }
   }
   
-  @media only screen and (min-width: 1024px) {
-    .feedings-toy-container {
-      padding: 0 40px;
-    }
-  }
   

@@ -1,10 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.http import HttpResponse
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 from .models import Computer, Comment, Peripheral
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
+
 
 # Create your views here.
 def home(request):
@@ -128,4 +132,20 @@ class PeripheralsDelete(LoginRequiredMixin, DeleteView):
         computer_id = self.kwargs.get('pk')
         peripheral = get_object_or_404(Peripheral, computer__id=computer_id)
         return peripheral
+    
+class Home(LoginView):
+    template_name = 'home.html'
         
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('community')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)

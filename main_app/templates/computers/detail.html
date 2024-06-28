@@ -17,10 +17,12 @@
           GPU: {{ computer.gpu }}</br>
           RAM: {{ computer.ram }}</br>
       </h3>
-      <div class="cat-actions">
-        <a href="{% url 'computer-update' computer.id %}" class="btn warn">Edit</a>
-        <a href="{% url 'computer-delete' computer.id %}" class="btn danger">Delete</a>
-      </div>
+      {% if user.id == computer.owner.id %}
+        <div class="cat-actions">
+          <a href="{% url 'computer-update' computer.id %}" class="btn warn">Edit</a>
+          <a href="{% url 'computer-delete' computer.id %}" class="btn danger">Delete</a>
+        </div>
+      {% endif %}
     </div>
   </div>
   <div class="computer-peripherals">
@@ -51,7 +53,6 @@
         <div class="computer-peripherals-btn">
           <a href="{% url 'computer-peripherals-update' computer.id %}" class="btn submit">Edit Peripherals</a>
           <a href="{% url 'computer-peripherals-delete' computer.id %}" class="btn danger">Delete</a>
-
         </div>
       {% else %}
       <div class="computer-peripherals-btn">
@@ -74,13 +75,15 @@
       <div class="comment-text">
         <h4>{{ comment.text }}</h4>
       </div>
-      <div class="comment-actions">
-        <a href="{% url 'comment-update' computer_id=computer.id comment_id=comment.id %}" class="btn">Update</a>
-        <form action="{% url 'comment-delete' computer.id comment.id %}" method="post">
-          {% csrf_token %}
-          <button type="submit" class="btn danger">Delete Comment</button>
-        </form>
-      </div>
+      {% if user.id == comment.author.id %}
+        <div class="comment-actions">
+          <a href="{% url 'comment-update' computer_id=computer.id comment_id=comment.id %}" class="btn">Update</a>
+          <form action="{% url 'comment-delete' computer.id comment.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn danger">Delete Comment</button>
+          </form>
+        </div>
+      {% endif %}
     </div>
   {% empty %}
     <p>No comments yet.</p>

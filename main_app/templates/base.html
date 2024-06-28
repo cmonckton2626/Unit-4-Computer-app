@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" type="image/png" href="" />
+    <link href="https://em-content.zobj.net/source/microsoft/379/desktop-computer_1f5a5-fe0f.png" rel="icon">
     <title>System Showcase</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     {% block head %} 
@@ -21,8 +21,20 @@
       </div>
       <nav>
         <ul>
+          {% if user.is_authenticated %}
           <li><a href="{% url 'community' %}">Community</a></li>
           <li><a href="{% url 'computer-create' %}">Add a computer</a></li>
+          <li>
+            <form id="logout-form" method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit">Log out</button>
+            </form>
+          </li>
+          {% else %}
+          <li><a href="{% url 'community' %}">Community</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>

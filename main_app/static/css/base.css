@@ -107,8 +107,13 @@ html {
   }
 
   .header-logo-container img {
-    width: 200px;
-    height: 200px;
+    width: 350px;
+    height: auto;
+  }
+
+  .header-logo-container a {
+    display: flex;
+    justify-content: center;
   }
   
   .page-header {
@@ -272,8 +277,8 @@ html {
     }
 
     .header-logo-container img {
-      width: 75px;
-      height: 75px;
+      height: 65px;
+      width: auto;
     }
   
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
@@ -284,10 +289,26 @@ html {
   
       nav,
       .header-logo-container {
-        background: #168AAD;
+        background: rgba(22, 138, 173, .7);
         -webkit-backdrop-filter: blur(3px);
         backdrop-filter: blur(3px);
       }
     }
+  }
+  
+  #logout-form button {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: var(--font-l);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+  }
+  
+  #logout-form button:hover {
+    color: var(--link-hover-color);
   }
   

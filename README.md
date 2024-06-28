@@ -15,7 +15,7 @@ Jump on in: https://system-showcase-843b11209f2a.herokuapp.com/
 You can either look around or sign up to get started interacting! 
 ##  Sneak Peek
 ![Home page](main_app/static/images/welcome.png "width='600' height='300'")
-![Community page](main_app/static/images/community.png"width='600' height='300'")
+![Community page](main_app/static/images/community.png "width='600' height='300'")
 ![Computer detail page](main_app/static/images/computerdetail.png "width='600' height='300'")
 ##  Planning 
 ![ERD](main_app/static/images/erd.png)
